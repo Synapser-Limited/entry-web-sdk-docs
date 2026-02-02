@@ -6,13 +6,18 @@ nav_order: 2
 
 # Entry Web SDK Integration Guide
 
-**Complete integration documentation for the Entry Web SDK** - A TypeScript SDK for secure biometric authentication using AWS Amplify and Rekognition.
+Complete integration documentation for the Entry Web SDK - A TypeScript SDK for secure biometric authentication using AWS Amplify and Rekognition.
+{: .fs-6 .fw-300 }
+
+---
 
 ## Quick Links
 
 - **[Use Cases & Patterns](./use-cases)** - Common use cases and implementation patterns
 - **[Error Handling Guide](./error-handling)** - Complete error handling reference
 - **[Security & Compliance](./security)** - Security features and compliance guide
+- **[Quick Reference](./quick-reference)** - Copy-paste code snippets
+- **[Troubleshooting](./troubleshooting)** - Common issues and FAQs
 
 ---
 
@@ -32,6 +37,9 @@ nav_order: 2
 ---
 
 ## Installation & Setup
+
+{: .warning }
+> **HTTPS Required** - The SDK requires a secure context (HTTPS) for camera access. The only exception is `localhost` for development.
 
 ### Installation Prerequisites
 
@@ -208,9 +216,15 @@ Before integrating the Entry Web SDK, ensure you have:
 4. **Entry Consumer Configuration** from Synapser
 5. **GitHub Personal Access Token** with `read:packages` scope
 
+{: .warning }
+> **HTTPS is Required**: Browsers only allow camera access on secure (HTTPS) origins. During development, `localhost` is an exception.
+
 See the [home page](./) for installation instructions.
 
 ### Step 1: Consumer Configuration
+
+{: .important }
+> You must register your application with Synapser before starting integration. Contact [support@synapser.com](mailto:support@synapser.com) to obtain your configuration.
 
 Contact Synapser support to obtain your Entry Consumer configuration details, including your application name, domain and IP Whitelist requirements.
 
@@ -320,6 +334,9 @@ async function authenticateUser() {
 
 ### Step 6: HTML Structure
 
+{: .note }
+> The SDK will render its UI (camera view, liveness detection) inside the `entry-overlay` element. Make sure it can expand to cover the viewport.
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -341,6 +358,9 @@ async function authenticateUser() {
 ```
 
 ### Advanced Integration Patterns
+
+{: .highlight }
+> **Framework Examples Below**: We provide integration patterns for React, Vue.js, and vanilla JavaScript. All examples include proper error handling.
 
 #### React Integration
 
@@ -493,51 +513,176 @@ export default {
 
 ## SDK Reference
 
+{: .note }
+> For quick copy-paste code snippets, see the [Quick Reference](./quick-reference) page.
+
 ### EntrySDK Class
+
+The main SDK class. Uses singleton pattern - only one instance per application.
 
 #### Static Methods
 
-##### `getInstance(appName: string, environment: EntryApiEnvironment): EntrySDK`
+##### `getInstance(appName, environment, options?)`
 
-Gets the singleton instance of the Entry SDK.
+Gets or creates the singleton instance of the Entry SDK.
+
+```typescript
+static getInstance(
+  appName: string,
+  environment: EntryApiEnvironment,
+  options?: { enableDebugLogging?: boolean }
+): EntrySDK
+```
 
 **Parameters:**
 
-- `appName` (string): Your registered application name
-- `environment` (EntryApiEnvironment): Target environment (Test/Demo/Production)
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `appName` | `string` | Yes | Your registered application name from Synapser |
+| `environment` | `EntryApiEnvironment` | Yes | Target environment |
+| `options.enableDebugLogging` | `boolean` | No | Enable verbose console logging |
 
-**Returns:** EntrySDK instance
+**Returns:** `EntrySDK` instance
+
+**Throws:** `EntrySDKError` with code `INVALID_PARAMETER` if parameters are invalid
+
+{: .important }
+> The SDK is a singleton. Calling `getInstance()` with a different `appName` will throw an error. Use `reset()` first if you need to reinitialize.
 
 **Example:**
 
 ```typescript
-const sdk = EntrySDK.getInstance('com.mycompany.myapp', EntryApiEnvironment.Production);
+// Standard usage
+const sdk = EntrySDK.getInstance('com.mycompany.myapp', EntryApiEnvironment.Live);
+
+// With debug logging
+const sdk = EntrySDK.getInstance('com.mycompany.myapp', EntryApiEnvironment.Test, {
+  enableDebugLogging: true
+});
+```
+
+##### `reset()`
+
+Resets the singleton instance. Use only in testing or when switching applications.
+
+```typescript
+static reset(): void
+```
+
+**Example:**
+
+```typescript
+EntrySDK.reset();
+const newSdk = EntrySDK.getInstance('different-app', EntryApiEnvironment.Live);
 ```
 
 #### Instance Methods
 
-##### `identifyUser(registerIfNotFound: boolean, parentElement: HTMLElement): Promise<EntryUser>`
+##### `identifyUser(registerIfNotFound, parentElement)`
 
 Identifies or registers a user using biometric authentication.
 
+```typescript
+identifyUser(
+  registerIfNotFound: boolean,
+  parentElement: HTMLElement
+): Promise<EntryUser>
+```
+
 **Parameters:**
 
-- `registerIfNotFound` (boolean): Whether to register if user not found
-- `parentElement` (HTMLElement): DOM element to render the SDK interface
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `registerIfNotFound` | `boolean` | Yes | `true` = register new users, `false` = fail if not found |
+| `parentElement` | `HTMLElement` | Yes | DOM element where SDK renders its UI |
 
-**Returns:** `Promise<EntryUser>` - User information
+**Returns:** `Promise<EntryUser>` - The identified or registered user
 
-**Throws:** Error if authentication fails
+**Throws:** `EntrySDKError` with various codes (see [Error Handling](./error-handling))
 
 **Example:**
 
 ```typescript
 try {
   const user = await sdk.identifyUser(true, document.getElementById('entry-container'));
-  console.log('User authenticated:', user);
+  console.log('User authenticated:', user.entryUserId);
 } catch (error) {
-  console.error('Authentication failed:', error.message);
+  if (error instanceof EntrySDKError) {
+    console.error(`[${error.code}] ${error.message}`);
+  }
 }
+```
+
+##### `deleteUser(userId)`
+
+Permanently deletes a user and their biometric data.
+
+```typescript
+deleteUser(userId: string): Promise<boolean>
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `userId` | `string` | Yes | The `entryUserId` of the user to delete |
+
+**Returns:** `Promise<boolean>` - `true` if deletion succeeded
+
+**Throws:** 
+- `EntrySDKError` with code `PERMISSION_DENIED` if deletion is disabled for your app
+- `EntrySDKError` with code `USER_NOT_FOUND` if user doesn't exist
+
+{: .warning }
+> This action is **irreversible**. The user's biometric template will be permanently deleted.
+
+**Example:**
+
+```typescript
+const success = await sdk.deleteUser(user.entryUserId);
+if (success) {
+  console.log('User deleted successfully');
+}
+```
+
+##### `identifyUsersFromPhoto(base64Photo)`
+
+Identifies users from a photo without requiring liveness detection.
+
+```typescript
+identifyUsersFromPhoto(base64Photo: string): Promise<EntryUser[]>
+```
+
+**Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `base64Photo` | `string` | Yes | Base64-encoded photo (without `data:` prefix) |
+
+**Returns:** `Promise<EntryUser[]>` - Array of matched users (may be empty)
+
+**Throws:** 
+- `EntrySDKError` with code `PERMISSION_DENIED` if feature is disabled for your app
+- `EntrySDKError` with code `INVALID_PARAMETER` if photo is invalid
+
+{: .note }
+> This feature must be enabled for your app by Synapser. Contact support to enable it.
+
+**Example:**
+
+```typescript
+// From file input
+const fileInput = document.querySelector('input[type="file"]');
+const file = fileInput.files[0];
+const reader = new FileReader();
+
+reader.onload = async (e) => {
+  const base64 = (e.target.result as string).split(',')[1]; // Remove data: prefix
+  const users = await sdk.identifyUsersFromPhoto(base64);
+  console.log(`Found ${users.length} matching users`);
+};
+
+reader.readAsDataURL(file);
 ```
 
 ### Data Types
@@ -574,6 +719,9 @@ enum EntryApiEnvironment {
 ### Error Handling
 
 The SDK provides a comprehensive typed error handling system with `EntrySDKError` and standardized error codes.
+
+{: .important }
+> Always wrap SDK calls in try/catch blocks and handle `EntrySDKError` instances. Check `error.isRetryable()` to determine if users should retry the operation.
 
 #### Basic Error Handling
 
@@ -713,9 +861,18 @@ try {
 }
 ```
 
-For complete error handling documentation with more examples and best practices, see the **[Error Handling Guide](./ERROR-HANDLING.md)**.
+For complete error handling documentation with more examples and best practices, see the **[Error Handling Guide](./error-handling)**.
 
 ---
+
+## Next Steps
+
+{: .highlight }
+> **Ready to integrate?** Check out these resources:
+> - [Quick Reference](./quick-reference) - Copy-paste code snippets
+> - [Error Handling](./error-handling) - Comprehensive error guide
+> - [Troubleshooting](./troubleshooting) - Common issues and solutions
+> - [Use Cases](./use-cases) - Real-world examples
 
 ## Conclusion
 
