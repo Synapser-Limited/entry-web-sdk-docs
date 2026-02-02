@@ -1,13 +1,30 @@
 title: Entry Web SDK
-description: Documentation for secure biometric authentication
+description: Secure facial biometric authentication SDK for web applications. Passwordless login with liveness detection powered by AWS Rekognition.
+tagline: Facial Biometric Authentication for Web Apps
+
 remote_theme: just-the-docs/just-the-docs@v0.10.0
 
 url: https://synapser-limited.github.io
 baseurl: /entry-web-sdk-docs
 
+# SEO and social
+author: Synapser Limited
+twitter:
+  username: synapser
+  card: summary
+social:
+  name: Synapser Limited
+  links:
+    - https://github.com/Synapser-Limited
+logo: /assets/images/logo.png
+
+# Google verification (add your ID after setting up Search Console)
+# google_site_verification: YOUR_VERIFICATION_ID
+
 plugins:
   - jekyll-remote-theme
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 permalink: pretty
 
@@ -78,3 +95,10 @@ callouts:
 # Last modified date
 last_edit_timestamp: true
 last_edit_time_format: "%b %e %Y at %I:%M %p"
+
+# Default front matter for SEO
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-image.png
