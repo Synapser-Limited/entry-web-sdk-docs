@@ -1,6 +1,7 @@
 ---
 layout: default
 title: SECURITY
+nav_order: 5
 ---
 
 # Entry Web SDK - Security and Compliance Guide
