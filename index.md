@@ -13,7 +13,7 @@ permalink: /
 Production-ready SDK for secure biometric authentication.
 {: .fs-6 .fw-300 }
 
-**Current Version: 1.0.11**
+**Current Version: 1.0.12-beta.0**
 {: .label .label-green }
 
 [Get Started](./integration){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
