@@ -1,6 +1,7 @@
 ---
 layout: default
 title: INTEGRATION
+nav_order: 2
 ---
 
 # Entry Web SDK Integration Guide
