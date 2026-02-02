@@ -30,14 +30,36 @@ npm install @synapser-limited/entry-web-sdk
 ## Getting Started
 
 ```typescript
-import { EntrySDK, EntryApiEnvironment } from '@synapser-limited/entry-web-sdk';
+import { EntrySDK, EntryApiEnvironment, EntrySDKError } from '@synapser-limited/entry-web-sdk';
 
-// Initialize SDK
+// Initialize SDK (provide your app name from Synapser)
 const entrySDK = EntrySDK.getInstance(
   'your-app-name',
   EntryApiEnvironment.Live
 );
+
+// Identify user with biometric liveness check
+async function authenticateUser() {
+  try {
+    const user = await entrySDK.identifyUser(
+      true,  // Register if not found
+      document.getElementById('auth-container')!
+    );
+    console.log('Authenticated:', user.entryUserId);
+  } catch (error) {
+    if (error instanceof EntrySDKError) {
+      console.error(`Error ${error.code}: ${error.message}`);
+    }
+  }
+}
 ```
+
+**Requirements:**
+- HTTPS domain (required for camera access)
+- Container element for the authentication UI
+- Valid app configuration from Synapser
+
+For complete integration details, see the [Integration Guide](./integration).
 
 ## Support
 
