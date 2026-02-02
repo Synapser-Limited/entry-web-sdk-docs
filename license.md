@@ -89,8 +89,3 @@ Synapser Limited
 ---
 
 **For licensing inquiries, please contact: [TO BE COMPLETED]**
-
-
----
-
-[← Back to Documentation](./)  
