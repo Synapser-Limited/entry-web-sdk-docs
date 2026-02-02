@@ -10,9 +10,9 @@ nav_order: 2
 
 ## Quick Links
 
-- **[Use Cases & Patterns](./USE-CASES.md)** - Common use cases and implementation patterns
-- **[Error Handling Guide](./ERROR-HANDLING.md)** - Complete error handling reference
-- **[Security & Compliance](./SECURITY.md)** - Security features and compliance guide
+- **[Use Cases & Patterns](./use-cases)** - Common use cases and implementation patterns
+- **[Error Handling Guide](./error-handling)** - Complete error handling reference
+- **[Security & Compliance](./security)** - Security features and compliance guide
 
 ---
 
@@ -32,8 +32,6 @@ nav_order: 2
 ---
 
 ## Installation & Setup
-
-For installation instructions and quick start guide, see the **[SDK README](../README.md#-quick-start)**.
 
 ### Installation Prerequisites
 
@@ -154,7 +152,7 @@ flowchart TD
 
 ## Use Cases
 
-The Entry Web SDK supports a wide range of authentication and identity verification use cases. For detailed use cases, implementation patterns, and code examples, see the **[Use Cases & Patterns Guide](./use-cases.md)**.
+The Entry Web SDK supports a wide range of authentication and identity verification use cases. For detailed use cases, implementation patterns, and code examples, see the **[Use Cases & Patterns Guide](./use-cases)**.
 
 **Primary use cases include:**
 
@@ -172,7 +170,7 @@ The Entry Web SDK supports a wide range of authentication and identity verificat
 
 The SDK implements enterprise-grade security features including end-to-end encryption, AWS Rekognition liveness detection, and comprehensive audit logging.
 
-For complete security documentation, compliance considerations, and best practices, see the **[Security & Compliance Guide](./security-guide.md)**.
+For complete security documentation, compliance considerations, and best practices, see the **[Security & Compliance Guide](./security)**.
 
 **Key security features:**
 
@@ -186,7 +184,7 @@ For complete security documentation, compliance considerations, and best practic
 
 ## Edge Cases & Troubleshooting
 
-For comprehensive troubleshooting guidance, common edge cases, and error handling strategies, see the **[Edge Cases & Troubleshooting Guide](./edge-cases-guide.md)**.
+For comprehensive troubleshooting guidance, common edge cases, and error handling strategies, see the **[Error Handling Guide](./error-handling)**.
 
 **Common scenarios covered:**
 
@@ -210,7 +208,7 @@ Before integrating the Entry Web SDK, ensure you have:
 4. **Entry Consumer Configuration** from Synapser
 5. **GitHub Personal Access Token** with `read:packages` scope
 
-Review the **[SDK README](../README.md)** for installation and basic usage.
+See the [home page](./) for installation instructions.
 
 ### Step 1: Consumer Configuration
 
