@@ -1,6 +1,7 @@
 ---
 layout: default
 title: License
+nav_order: 11
 ---
 
 # Proprietary Software License
