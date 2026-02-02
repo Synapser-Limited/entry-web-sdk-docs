@@ -14,31 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.11] - 2026-02-02
 
-### Changed
-- Stable release merging all beta changes
-
-### Fixed
-- Various bug fixes and improvements from beta testing
-
-## [1.0.11-beta.10] - 2026-01-21
-
-### Changed
-- Pre-release testing updates
-
-## [1.0.11-beta.9] - 2026-01-16
-
-### Changed
-- Pre-release testing updates
-
-## [1.0.11-beta.8] - 2026-01-16
-
-### Changed
-- Pre-release testing updates
-
-## [1.0.11-beta.7] - 2026-01-14
-
-### Changed
-- Pre-release testing updates
+- Stable production ready release.
 
 ---
 
@@ -50,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Removed** - Removed features
 - **Fixed** - Bug fixes
 - **Security** - Vulnerability fixes
+
 
 ---
 
