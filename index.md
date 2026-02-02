@@ -12,7 +12,10 @@ Production-ready SDK for secure biometric authentication.
 - 📋 [Changelog](./changelog) - Version history and release notes
 - 📄 [License](./license) - Software license terms
 - 📦 [Package](https://github.com/Synapser-Limited/entry-web-sdk/pkgs/npm/entry-web-sdk) - npm package on GitHub Packages
-
+- 🔒 [Security](./security) - Security guidelines and best practices
+- ⚠️ [Error Handling](./error-handling) - Error codes and handling strategies
+- 📖 [Use Cases](./use-cases) - Common integration scenarios
+  
 ## Installation
 
 ```bash
