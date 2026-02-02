@@ -9,8 +9,8 @@ Production-ready SDK for secure biometric authentication.
 
 ## Quick Links
 
-- � [Integration Guide](./integration) - Complete setup and integration instructions
-- �📋 [Changelog](./changelog) - Version history and release notes
+- ⚙️ [Integration Guide](./integration) - Complete setup and integration instructions
+- 𝌡 [Changelog](./changelog) - Version history and release notes
 - 📄 [License](./license) - Software license terms
 - 📦 [Package](https://github.com/Synapser-Limited/entry-web-sdk/pkgs/npm/entry-web-sdk) - npm package on GitHub Packages
 - 🔒 [Security](./security) - Security guidelines and best practices
@@ -35,8 +35,8 @@ import { EntrySDK, EntryApiEnvironment, EntrySDKError } from '@synapser-limited/
 
 // Initialize SDK (provide your app name from Synapser)
 const entrySDK = EntrySDK.getInstance(
-  'your-app-name',
-  EntryApiEnvironment.Live
+  'your-app-name-registered-with-synapser',
+  EntryApiEnvironment.Test // or EntryApiEnvironment.Live
 );
 
 // Identify user with biometric liveness check
@@ -44,7 +44,7 @@ async function authenticateUser() {
   try {
     const user = await entrySDK.identifyUser(
       true,  // Register if not found
-      document.getElementById('auth-container')!
+      document.getElementById('auth-container')! // Container for auth UI (simple <div> HTML element for example)
     );
     console.log('Authenticated:', user.entryUserId);
   } catch (error) {
