@@ -2,7 +2,8 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Entry Web SDK - Production-ready SDK for secure biometric authentication"
+description: "Entry Web SDK - Facial biometric authentication for web apps. Passwordless login with liveness detection, powered by AWS Rekognition. TypeScript/React SDK."
+keywords: facial recognition, biometric authentication, passwordless login, liveness detection, face verification, AWS Rekognition, TypeScript SDK, React authentication, web biometrics
 permalink: /
 ---
 
@@ -10,7 +11,7 @@ permalink: /
 
 {: .fs-9 }
 
-Production-ready SDK for secure biometric authentication.
+Facial biometric authentication for web applications.
 {: .fs-6 .fw-300 }
 
 **Current Version: 1.0.13-beta.0**
@@ -20,6 +21,16 @@ Production-ready SDK for secure biometric authentication.
 [Quick Reference](./quick-reference){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
+
+## What is Entry Web SDK?
+
+Entry Web SDK enables **passwordless authentication** using facial biometrics with active liveness detection. Built on AWS Rekognition, it provides:
+
+- **Facial Recognition** - Identify and verify users by their face
+- **Liveness Detection** - Prevent spoofing with active liveness checks
+- **User Registration** - Seamless onboarding with biometric enrollment
+- **TypeScript/React** - First-class support for modern web apps
+- **Enterprise Security** - AWS-powered backend, encrypted data transmission
 
 {: .warning }
 > **HTTPS Required** - The SDK requires HTTPS for camera access. It will not work on `http://` URLs (except `localhost` for development).
