@@ -1,6 +1,7 @@
 ---
 layout: default
 title: ERROR HANDLING
+nav_order: 6
 ---
 
 # Error Handling Guide
