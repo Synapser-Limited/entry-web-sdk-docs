@@ -1,22 +1,34 @@
 ---
 layout: default
-title: Entry Web SDK
+title: Home
+nav_order: 1
+description: "Entry Web SDK - Production-ready SDK for secure biometric authentication"
+permalink: /
 ---
 
 # Entry Web SDK Documentation
 
 Production-ready SDK for secure biometric authentication.
+{: .fs-6 .fw-300 }
+
+[Get Started](./integration){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub Packages](https://github.com/Synapser-Limited/entry-web-sdk/pkgs/npm/entry-web-sdk){: .btn .fs-5 .mb-4 .mb-md-0 }
+
+---
 
 ## Quick Links
 
-- � [Integration Guide](./integration) - Complete setup and integration instructions
-- �📋 [Changelog](./changelog) - Version history and release notes
-- 📄 [License](./license) - Software license terms
-- 📦 [Package](https://github.com/Synapser-Limited/entry-web-sdk/pkgs/npm/entry-web-sdk) - npm package on GitHub Packages
-- 🔒 [Security](./security) - Security guidelines and best practices
-- ⚠️ [Error Handling](./error-handling) - Error codes and handling strategies
-- 📖 [Use Cases](./use-cases) - Common integration scenarios
-  
+| Documentation | Description |
+|:--------------|:------------|
+| 🚀 [Integration Guide](./integration) | Complete setup and integration instructions |
+| 📋 [Changelog](./changelog) | Version history and release notes |
+| 📄 [License](./license) | Software license terms |
+| 🔒 [Security](./security) | Security guidelines and best practices |
+| ⚠️ [Error Handling](./error-handling) | Error codes and handling strategies |
+| 📖 [Use Cases](./use-cases) | Common integration scenarios |
+
+---
+
 ## Installation
 
 ```bash
@@ -27,6 +39,8 @@ echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" >> ~/.npmrc
 # Install the SDK
 npm install @synapser-limited/entry-web-sdk
 ```
+
+---
 
 ## Getting Started
 
@@ -56,12 +70,13 @@ async function authenticateUser() {
 ```
 
 **Requirements:**
-
 - HTTPS domain (required for camera access)
 - Container element for the authentication UI
 - Valid app configuration from Synapser
 
 For complete integration details, see the [Integration Guide](./integration).
+
+---
 
 ## Support
 
