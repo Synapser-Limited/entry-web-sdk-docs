@@ -1,6 +1,7 @@
 ---
 layout: default
 title: USE CASES
+nav_order: 7
 ---
 
 # Entry Web SDK - Use Cases and Implementation Patterns
