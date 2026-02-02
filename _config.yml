@@ -1,5 +1,5 @@
 title: Entry Web SDK
 description: Documentation for the Entry Web SDK - secure biometric authentication
-remote_theme: pages-themes/minimal@v0.2.0
+remote_theme: pages-themes/tactile@v0.2.0
 plugins:
   - jekyll-remote-theme
