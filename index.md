@@ -24,6 +24,18 @@ echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" >> ~/.npmrc
 npm install @synapser-limited/entry-web-sdk
 ```
 
+## Getting Started
+
+```typescript
+import { EntrySDK, EntryApiEnvironment } from '@synapser-limited/entry-web-sdk';
+
+// Initialize SDK
+const entrySDK = EntrySDK.getInstance(
+  'your-app-name',
+  EntryApiEnvironment.Live
+);
+```
+
 ## Support
 
 For support inquiries, please contact [support@synapser.com](mailto:support@synapser.com).
