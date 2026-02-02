@@ -9,7 +9,8 @@ Production-ready SDK for secure biometric authentication.
 
 ## Quick Links
 
-- 📋 [Changelog](./changelog) - Version history and release notes
+- � [Integration Guide](./integration) - Complete setup and integration instructions
+- �📋 [Changelog](./changelog) - Version history and release notes
 - 📄 [License](./license) - Software license terms
 - 📦 [Package](https://github.com/Synapser-Limited/entry-web-sdk/pkgs/npm/entry-web-sdk) - npm package on GitHub Packages
 - 🔒 [Security](./security) - Security guidelines and best practices
@@ -55,6 +56,7 @@ async function authenticateUser() {
 ```
 
 **Requirements:**
+
 - HTTPS domain (required for camera access)
 - Container element for the authentication UI
 - Valid app configuration from Synapser
